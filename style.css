@@ -1,19 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Gideon+Roman&display=swap');
 
 * {
-    background-color: black;
+    background-color: transparent;
     color: white;
     border: none;
     font-family: "Gideon Roman", serif;
 }
 
 html {
-    background-image: url();
+    background-image: url("https://www.worldatlas.com/upload/7d/45/7e/shutterstock-98484677.jpg");
 }
 
 header {
     display: flex;
     justify-content: center;
+    background-color: rgba(0, 0, 0, 0.644);
 }
 
 main {
@@ -23,7 +24,26 @@ main {
     align-items: center;
 }
 
+#input {
+    background-color: rgba(0, 0, 0, 0.555);
+    border-radius: 15px;
+    border: 1px solid white;
+    width: 30vh;
+    font-size: larger;
+    margin-top: 20vh;
+    padding: 2vh 2vw;
+}
+
 #resultado {
+    margin-top: 1vh;
     width: fit-content;
     height: fit-content;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.555);
+    border-radius: 15px;
+    border: 1px solid white;
+    width: 30vh;
+    font-size: larger;
+    margin-top: 20vh;
+    padding: 2vh 2vw;
 }

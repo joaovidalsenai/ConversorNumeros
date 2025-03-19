@@ -1,5 +1,6 @@
 function convert() {
     let num = document.getElementById("input").value;
+    let roman = '';
     const romanValues = {
         X̅I̅V̅L̅D̅C̅M̅: 999999999999999,
         M̅: 1000000,
@@ -31,12 +32,24 @@ function convert() {
         IV: 4,
         I: 1
     };
-    let roman = '';
-    for (let key in romanValues) {
-        while (num >= romanValues[key]) {
-            roman += key;
-            num -= romanValues[key];
+
+
+    if (num > 0 && num <= 3999999) {
+        for (let key in romanValues) {
+            while (num >= romanValues[key]) {
+                roman += key;
+                num -= romanValues[key];
+            }
         }
     }
+
+    else if (num == "") {
+        roman = '';
+    }
+    
+    else roman = "INSIRA UM NÚMERO VÁLIDO";
+    
+    
+
     document.getElementById("resultado").innerHTML = roman;
 }
