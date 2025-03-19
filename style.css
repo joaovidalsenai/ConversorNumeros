@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Gideon+Roman&display=swap');
+
+* {
+    background-color: black;
+    color: white;
+    border: none;
+    font-family: "Gideon Roman", serif;
+}
+
+html {
+    background-image: url();
+}
+
+header {
+    display: flex;
+    justify-content: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#resultado {
+    width: fit-content;
+    height: fit-content;
+}
