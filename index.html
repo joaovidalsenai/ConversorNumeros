@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js" integrity="sha512-90vH1Z83AJY9DmlWa8WkjkV79yfS2n2Oxhsi2dZbIv0nC4E6m5AbH8Nh156kkM7JePmqD6tcZsfad1ueoaovww==" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <body onload="setup()">
@@ -12,11 +13,12 @@
             CONVERTER
         </h1>
         <nav>
-            <ul id="nav-list">
-                <li id="nav-title">CONVERTER:</li>
-                <li><input type="button" value="ROMANOS" onclick="oper = 0, changeNav()" class="nav-btn" id="roman"></li>
-                <li><input type="button" value="ETRUSCOS" onclick="oper = 1, changeNav()" class="nav-btn" id="etrus"></li>
+            <ul id="nav-list">          
                 <li><input type="button" value="ÁTICOS" onclick="oper = 2, changeNav()" class="nav-btn" id="attic"></li>
+                <li><input type="button" value="ETRUSCOS" onclick="oper = 1, changeNav()" class="nav-btn" id="etrus"></li>
+                <li><input type="button" value="PSALTER" onclick="oper = 3, changeNav()" class="nav-btn" id="psalt"></li>
+                <li><input type="button" value="ROMANOS" onclick="oper = 0, changeNav()" class="nav-btn" id="roman"></li>
+
             </ul>
         </nav>
     </header>
@@ -25,8 +27,10 @@
         <input type="text" id="input" class="main" placeholder="Insira um número de 1 a 3999999" oninput="convert()">
     </main>
     <footer>
-        <a href="https://en.wikipedia.org/wiki/Roman_numerals">ALGARISMOS ROMANOS</a>
+        <a href="https://en.wikipedia.org/wiki/Attic_numerals">ALGARISMOS ÁTICOS</a>
         <a href="https://en.wikipedia.org/wiki/Etruscan_numerals">ALGARISMOS ETRUSCOS</a>
+        <a href="https://en.wikipedia.org/wiki/Psalter_Pahlavi#Numbers">ALGARISMOS PERSAS</a>
+        <a href="https://en.wikipedia.org/wiki/Roman_numerals">ALGARISMOS ROMANOS</a>
     </footer>
     <script src="script.js"></script>
 </body>

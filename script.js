@@ -1,10 +1,11 @@
 const htmlTag = document.querySelector("html");
 const res = document.querySelector("#resultado");
 const input = document.querySelector("#input");
+const bg = document.getElementById("bg");
 
-const maxRoman = 3999999, maxEtrus = 499, maxAttic  = 99999;
+const maxRoman = 3999999, maxEtrus = 499, maxAttic  = 99999, maxPsalt = 300;
 
-let oper = 1;
+let oper = 0;
 
 htmlTag.style.backgroundImage = 'url("https://www.dailyartmagazine.com/wp-content/uploads/2022/01/Cole_Thomas_The_Course_of_Empire_Destruction_1836-scaled.jpeg")';
 
@@ -30,6 +31,7 @@ function cores(i) {
 }
 
 function changeNav() {
+    let currentElement;
     const navButtons = document.getElementsByClassName("nav-btn");
     for (let i = 0; i < navButtons.length; i++) {
         navButtons[i].style.backgroundColor = 'transparent';
@@ -38,44 +40,54 @@ function changeNav() {
 
     switch (oper) {
         case 0:
-            const romanElement = document.getElementById("roman");
-            romanElement.style.backgroundColor = 'ivory';
-            romanElement.style.color = 'black';
+            currentElement = document.getElementById("roman");
+            input.placeholder = 'Insira um número de 1 a '+ maxRoman;
+            htmlTag.style.backgroundImage = 'url("https://www.dailyartmagazine.com/wp-content/uploads/2022/01/Cole_Thomas_The_Course_of_Empire_Destruction_1836-scaled.jpeg")';
             break;
 
         case 1:
-            const etrusElement = document.getElementById("etrus");
-            etrusElement.style.backgroundColor = 'ivory';
-            etrusElement.style.color = 'black';
+            currentElementt = document.getElementById("etrus");
+            input.placeholder = 'Insira um número de 1 a '+ maxEtrus;
+            htmlTag.style.backgroundImage = 'url("https://blogs.unimelb.edu.au/shaps-research/files/2024/03/Hubert-Robert-Ancient-ruins-as-baths-1798-1466a6123e0eab63-1050x591.png")';
             break;
 
         case 2:
-            const atticElement = document.getElementById("attic");
-            atticElement.style.backgroundColor = 'ivory';
-            atticElement.style.color = 'black';
+            currentElement = document.getElementById("attic");
+            input.placeholder = 'Insira um número de 1 a '+ maxAttic;
+            htmlTag.style.backgroundImage = 'url("https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/A_City_of_Ancient_Greece_by_William_Linton.jpg/960px-A_City_of_Ancient_Greece_by_William_Linton.jpg?20230606183934")'
             break;
 
+        case 3:
+            currentElement = document.getElementById("psalt");
+            input.placeholder = 'Insira um número de 1 a '+ maxPsalt;
+            htmlTag.style.backgroundImage = 'url("https://idsb.tmgrup.com.tr/ly/uploads/images/2023/09/26/thumbs/800x531/293777.jpg")';
         default:
             break;
     }
 
+    res.style.fontFamily = '"Quivira", sans-serif';
+    currentElement.style.backgroundColor = 'ivory';
+    currentElement.style.color = 'black';
     convert();
+}
+
+function reverseString(txt) {
+    return(_.split(txt, '').reverse().join(''));
 }
 
 function convert() {
     let inpVal = input.value;
     switch (oper) {
         case 0:
-            res.style.fontFamily = "'Times New Roman', Times, serif;";
             intRoman(inpVal);
             break;
         case 1:
-            res.style.fontFamily = '"Noto Sans Old Italic", sans-serif';
             intEtrus(inpVal);
             break;
         case 2:
-            res.style.fontFamily = "'Quivera', sans-serif";
             intAttic(inpVal);
+        case 3:
+            intPsalt(inpVal);
         default:
             break;
     }
@@ -121,7 +133,7 @@ function intEtrus(inpVal) {
             }
         }
         res.style.visibility = "visible";
-        res.innerHTML = etrus;
+        res.innerHTML = reverseString(etrus);
     }
         
 
@@ -159,6 +171,35 @@ function intAttic(inpVal) {
     }
     
     else if (attic == ''){
+        cores(1);
+        res.style.visibility = "hidden";
+    }
+}
+
+function intPsalt(inpVal) {
+    let psalt = '';
+
+    cores(1);
+
+    if (inpVal > 0 && inpVal <= maxPsalt) {
+        for (let key in psaltValues) {
+            while (inpVal >= psaltValues[key]) {
+                psalt += key;
+                inpVal -= psaltValues[key];
+            }
+        }
+        res.style.visibility = "visible";
+        res.innerHTML = reverseString(psalt);
+    }
+        
+
+    else if ((inpVal <= 0 || inpVal > maxPsalt) && inpVal !='') {
+        res.style.fontFamily  = 'LastResort';
+        res.innerHTML = "INSIRA UM NÚMERO DE 1 A " + maxPsalt ;
+        cores(2);
+    }
+    
+    else if (psalt == ''){
         cores(1);
         res.style.visibility = "hidden";
     }
@@ -214,4 +255,14 @@ const atticValues = {
     'Δ': 10,
     'Π': 5,
     'Ι': 1
+}
+
+const psaltValues = {
+    [String.fromCodePoint(0x10BAF)]: 100,
+    [String.fromCodePoint(0x10BAE)]: 20,
+    [String.fromCodePoint(0x10BAD)]: 10,
+    [String.fromCodePoint(0x10BAC)]: 4,
+    [String.fromCodePoint(0x10BAB)]: 3,
+    [String.fromCodePoint(0x10BAA)]: 2,
+    [String.fromCodePoint(0x10BA9)]: 1
 }
