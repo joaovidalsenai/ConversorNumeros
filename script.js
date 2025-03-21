@@ -1,9 +1,8 @@
 const htmlTag = document.querySelector("html");
 const res = document.querySelector("#resultado");
 const input = document.querySelector("#input");
-const bg = document.getElementById("bg");
 
-const maxRoman = 3999999, maxEtrus = 499, maxAttic  = 99999, maxPsalt = 300;
+const maxRoman = 3999999, maxEtrus = 499, maxAttic = 99999, maxPsalt = 499, maxKharos = 19999;
 
 let oper = 0;
 
@@ -40,32 +39,44 @@ function changeNav() {
 
     switch (oper) {
         case 0:
+            res.style.fontFamily = '"Quivira", sans-serif';
             currentElement = document.getElementById("roman");
             input.placeholder = 'Insira um número de 1 a '+ maxRoman;
             htmlTag.style.backgroundImage = 'url("https://www.dailyartmagazine.com/wp-content/uploads/2022/01/Cole_Thomas_The_Course_of_Empire_Destruction_1836-scaled.jpeg")';
             break;
 
         case 1:
-            currentElementt = document.getElementById("etrus");
+            res.style.fontFamily = '"Quivira", sans-serif';
+            currentElement = document.getElementById("etrus");
             input.placeholder = 'Insira um número de 1 a '+ maxEtrus;
             htmlTag.style.backgroundImage = 'url("https://blogs.unimelb.edu.au/shaps-research/files/2024/03/Hubert-Robert-Ancient-ruins-as-baths-1798-1466a6123e0eab63-1050x591.png")';
             break;
 
         case 2:
+            res.style.fontFamily = '"Quivira", sans-serif';
             currentElement = document.getElementById("attic");
             input.placeholder = 'Insira um número de 1 a '+ maxAttic;
             htmlTag.style.backgroundImage = 'url("https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/A_City_of_Ancient_Greece_by_William_Linton.jpg/960px-A_City_of_Ancient_Greece_by_William_Linton.jpg?20230606183934")'
             break;
 
         case 3:
+            res.style.fontFamily = '"Noto Sans Psalter Pahlavi", sans-serif';
             currentElement = document.getElementById("psalt");
             input.placeholder = 'Insira um número de 1 a '+ maxPsalt;
             htmlTag.style.backgroundImage = 'url("https://idsb.tmgrup.com.tr/ly/uploads/images/2023/09/26/thumbs/800x531/293777.jpg")';
+            break;
+
+        case 4:
+            res.style.fontFamily = '"Quivira", sans-serif';
+            currentElement = document.getElementById("kharos");
+            input.placeholder = 'Insira um número de 1 a '+ maxKharos;
+            htmlTag.style.backgroundImage = 'url("https://upload.wikimedia.org/wikipedia/commons/2/2b/Rani_Ghat_is_the_largest_site_in_the_Gandhara_region_comprising_of_4_kilometer_radius..JPG")'
+            break;
+
         default:
             break;
     }
 
-    res.style.fontFamily = '"Quivira", sans-serif';
     currentElement.style.backgroundColor = 'ivory';
     currentElement.style.color = 'black';
     convert();
@@ -86,8 +97,13 @@ function convert() {
             break;
         case 2:
             intAttic(inpVal);
+            break;
         case 3:
             intPsalt(inpVal);
+            break;
+        case 4:
+            intKharos(inpVal);
+            break;
         default:
             break;
     }
@@ -189,17 +205,44 @@ function intPsalt(inpVal) {
             }
         }
         res.style.visibility = "visible";
-        res.innerHTML = reverseString(psalt);
+        res.innerHTML = psalt;
     }
         
 
     else if ((inpVal <= 0 || inpVal > maxPsalt) && inpVal !='') {
-        res.style.fontFamily  = 'LastResort';
         res.innerHTML = "INSIRA UM NÚMERO DE 1 A " + maxPsalt ;
         cores(2);
     }
     
     else if (psalt == ''){
+        cores(1);
+        res.style.visibility = "hidden";
+    }
+}
+
+function intKharos(inpVal) {
+    let kharos = '';
+
+    cores(1);
+
+    if (inpVal > 0 && inpVal <= maxKharos) {
+        for (let key in kharosValues) {
+            while (inpVal >= kharosValues[key]) {
+                kharos += key;
+                inpVal -= kharosValues[key];
+            }
+        }
+        res.style.visibility = "visible";
+        res.innerHTML = kharos;
+    }
+        
+
+    else if ((inpVal <= 0 || inpVal > maxKharos) && inpVal !='') {
+        res.innerHTML = "INSIRA UM NÚMERO DE 1 A " + maxKharos ;
+        cores(2);
+    }
+    
+    else if (kharos == ''){
         cores(1);
         res.style.visibility = "hidden";
     }
@@ -266,3 +309,32 @@ const psaltValues = {
     [String.fromCodePoint(0x10BAA)]: 2,
     [String.fromCodePoint(0x10BA9)]: 1
 }
+
+const kharosValues = {
+    "𐩄𐩇": 10000,
+    "𐩃𐩃𐩀𐩇": 9000,
+    "𐩃𐩃𐩇": 8000,
+    "𐩃𐩂𐩇": 7000,
+    "𐩃𐩁𐩇": 6000,
+    "𐩃𐩀𐩇": 5000,
+    "𐩃𐩇": 4000,
+    "𐩂𐩇": 3000,
+    "𐩁𐩇": 2000,
+    "𐩇": 1000,
+    "𐩃𐩃𐩀𐩆": 900,
+    "𐩃𐩃𐩆": 800,
+    "𐩃𐩂𐩆": 700,
+    "𐩃𐩁𐩆": 600,
+    "𐩃𐩀𐩆": 500,
+    "𐩃𐩆": 400,
+    "𐩂𐩆": 300,
+    "𐩁𐩆": 200,
+    "𐩆": 100,
+    "𐩅": 20,
+    "𐩄": 10,
+    "𐩃": 4,
+    "𐩂": 3,
+    "𐩁": 2,
+    "𐩀": 1
+};
+
