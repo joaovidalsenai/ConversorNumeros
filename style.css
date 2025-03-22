@@ -84,6 +84,7 @@ main {
     width: 329px;
     background-color: rgba(0, 0, 0, 0.7);
     font-size: large;
+    margin-bottom: 1vh;
 }
 
 #input:hover {
@@ -103,6 +104,11 @@ main {
     font-size: x-large;
     width: fit-content;
     height: fit-content;
+}
+
+#ajuda{
+    position: absolute;
+    margin: 18px 0px 0px -80px;
 }
 
 footer {

@@ -1,6 +1,7 @@
 const htmlTag = document.querySelector("html");
 const res = document.querySelector("#resultado");
 const input = document.querySelector("#input");
+const ajuda = document.getElementById("ajuda");
 
 const maxRoman = 3999999, maxEtrus = 499, maxAttic = 99999, maxPsalt = 499, maxKharos = 19999, maxEgypt = 9999999;
 
@@ -43,10 +44,18 @@ function changeNav() {
     res.style.letterSpacing = 'normal';
 
     switch (oper) {
+        
+        // <a href="">ALGARISMOS ÁTICOS</a>
+        // <a href="">ALGARISMOS CAROSTE</a>
+        // <a href="">ALGARISMOS EGÍPCIOS</a>
+        // <a href="">ALGARISMOS ETRUSCOS</a>
+        // <a href="">ALGARISMOS PERSAS</a>
+        // <a href="">ALGARISMOS ROMANOS</a>
         case 0:
             res.style.fontFamily = '"Quivira", sans-serif';
             currentElement = document.getElementById("roman");
             input.placeholder = 'Insira um número de 1 a '+ maxRoman;
+            ajuda.href = "https://en.wikipedia.org/wiki/Roman_numerals";
             htmlTag.style.backgroundImage = 'url("https://www.dailyartmagazine.com/wp-content/uploads/2022/01/Cole_Thomas_The_Course_of_Empire_Destruction_1836-scaled.jpeg")';
             break;
 
@@ -54,6 +63,7 @@ function changeNav() {
             res.style.fontFamily = '"Quivira", sans-serif';
             currentElement = document.getElementById("etrus");
             input.placeholder = 'Insira um número de 1 a '+ maxEtrus;
+            ajuda.href = "https://en.wikipedia.org/wiki/Etruscan_numerals";
             htmlTag.style.backgroundImage = 'url("https://blogs.unimelb.edu.au/shaps-research/files/2024/03/Hubert-Robert-Ancient-ruins-as-baths-1798-1466a6123e0eab63-1050x591.png")';
             break;
 
@@ -61,6 +71,7 @@ function changeNav() {
             res.style.fontFamily = '"Quivira", sans-serif';
             currentElement = document.getElementById("attic");
             input.placeholder = 'Insira um número de 1 a '+ maxAttic;
+            ajuda.href = "https://en.wikipedia.org/wiki/Attic_numerals#The_system";
             htmlTag.style.backgroundImage = 'url("https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/A_City_of_Ancient_Greece_by_William_Linton.jpg/960px-A_City_of_Ancient_Greece_by_William_Linton.jpg?20230606183934")'
             break;
 
@@ -68,6 +79,7 @@ function changeNav() {
             res.style.fontFamily = '"Noto Sans Psalter Pahlavi", sans-serif';
             currentElement = document.getElementById("psalt");
             input.placeholder = 'Insira um número de 1 a '+ maxPsalt;
+            ajuda.href = "https://en.wikipedia.org/wiki/Psalter_Pahlavi#Numbers";
             htmlTag.style.backgroundImage = 'url("https://idsb.tmgrup.com.tr/ly/uploads/images/2023/09/26/thumbs/800x531/293777.jpg")';
             break;
 
@@ -75,6 +87,7 @@ function changeNav() {
             res.style.fontFamily = '"Quivira", sans-serif';
             currentElement = document.getElementById("kharos");
             input.placeholder = 'Insira um número de 1 a '+ maxKharos;
+            ajuda.href = "https://en.wikipedia.org/wiki/Kharosthi#Numerals";
             htmlTag.style.backgroundImage = 'url("https://upload.wikimedia.org/wikipedia/commons/e/e2/Across_the_Pool_to_the_Golden_Temple_of_Amritsar_by_Edwin_Lord_Weeks.jpg")'
             break;
 
@@ -82,6 +95,7 @@ function changeNav() {
             res.style.fontFamily = '"Quivira", sans-serif';
             currentElement = document.getElementById("egypt");
             input.placeholder = 'Insira um número de 1 a '+ maxEgypt;
+            ajuda.href = "https://en.wikipedia.org/wiki/Egyptian_numerals#Digits_and_numbers";
             htmlTag.style.backgroundImage = 'url("https://cdn2.oceansbridge.com/2018/06/22173929/Egyptian-Landscape-with-the-Pyramids-Georg-Macco-Oil-Painting.jpg")'
             break;
 
@@ -277,10 +291,10 @@ function intEgypt(inpVal) {
             }
             if (egypt.includes(key)) egypt += '\n';
         }
-        res.style.fontSize = 'xx-large';
+        res.style.fontSize = 'x-large';
         res.style.padding = '0vh 2vw 0vh';
         res.style.lineHeight = '1';
-        res.style.letterSpacing = '3px';
+        res.style.letterSpacing = '10px';
         res.style.visibility = "visible";
         res.innerHTML = '<pre>'+egypt+'</pre>';
     }
