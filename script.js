@@ -275,7 +275,7 @@ function intEgypt(inpVal) {
                 egypt += key;
                 inpVal -= egyptValues[key];
             }
-            if (egypt != '') egypt += '\n';
+            if (egypt.includes(key)) egypt += '\n';
         }
         res.style.fontSize = 'xx-large';
         res.style.padding = '0vh 2vw 0vh';
