@@ -10,6 +10,8 @@
 
 html {
     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     height: 100vh;
 }
 
@@ -74,13 +76,13 @@ main {
     border-radius: 15px;
     border: 1px solid ivory;
     background-color: rgba(0, 0, 0, 0.7);
-    font-size: 16px;
     padding: 2vh 2vw;
 }
 
 #input {
     width: 329px;
     background-color: rgba(0, 0, 0, 0.7);
+    font-size: large;
 }
 
 #input:hover {
@@ -97,8 +99,9 @@ main {
     display: flex;
     align-items: center;
     margin-bottom: 5vh;
-    font-size: larger;
+    font-size: x-large;
     width: fit-content;
+    height: fit-content;
 }
 
 footer {
@@ -108,4 +111,8 @@ footer {
     justify-content: space-around;
     align-items: center;
     background:rgba(0, 0, 0, 0.7);
+}
+
+footer a {
+    font-size: small;
 }

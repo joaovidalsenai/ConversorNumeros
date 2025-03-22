@@ -2,7 +2,7 @@ const htmlTag = document.querySelector("html");
 const res = document.querySelector("#resultado");
 const input = document.querySelector("#input");
 
-const maxRoman = 3999999, maxEtrus = 499, maxAttic = 99999, maxPsalt = 499, maxKharos = 19999;
+const maxRoman = 3999999, maxEtrus = 499, maxAttic = 99999, maxPsalt = 499, maxKharos = 19999, maxEgypt = 9999999;
 
 let oper = 0;
 
@@ -23,6 +23,7 @@ function cores(i) {
             res.style.borderColor = 'red';
             input.style.borderColor = 'red';
             res.style.visibility = "visible";
+            res.style.fontFamily = '"Quivira", sans-serif';
             break;
         default:
             break;
@@ -36,6 +37,10 @@ function changeNav() {
         navButtons[i].style.backgroundColor = 'transparent';
         navButtons[i].style.color = 'ivory';
     }
+    res.style.fontSize = 'x-large';
+    res.style.padding = '2vh 2vw';
+    res.style.lineHeight = 'normal';
+    res.style.letterSpacing = 'normal';
 
     switch (oper) {
         case 0:
@@ -70,7 +75,14 @@ function changeNav() {
             res.style.fontFamily = '"Quivira", sans-serif';
             currentElement = document.getElementById("kharos");
             input.placeholder = 'Insira um número de 1 a '+ maxKharos;
-            htmlTag.style.backgroundImage = 'url("https://upload.wikimedia.org/wikipedia/commons/2/2b/Rani_Ghat_is_the_largest_site_in_the_Gandhara_region_comprising_of_4_kilometer_radius..JPG")'
+            htmlTag.style.backgroundImage = 'url("https://upload.wikimedia.org/wikipedia/commons/e/e2/Across_the_Pool_to_the_Golden_Temple_of_Amritsar_by_Edwin_Lord_Weeks.jpg")'
+            break;
+
+        case 5:
+            res.style.fontFamily = '"Quivira", sans-serif';
+            currentElement = document.getElementById("egypt");
+            input.placeholder = 'Insira um número de 1 a '+ maxEgypt;
+            htmlTag.style.backgroundImage = 'url("https://cdn2.oceansbridge.com/2018/06/22173929/Egyptian-Landscape-with-the-Pyramids-Georg-Macco-Oil-Painting.jpg")'
             break;
 
         default:
@@ -103,6 +115,9 @@ function convert() {
             break;
         case 4:
             intKharos(inpVal);
+            break;
+        case 5:
+            intEgypt(inpVal);
             break;
         default:
             break;
@@ -206,6 +221,7 @@ function intPsalt(inpVal) {
         }
         res.style.visibility = "visible";
         res.innerHTML = psalt;
+        res.style.fontFamily = '"Noto Sans Psalter Pahlavi", sans-serif';
     }
         
 
@@ -243,6 +259,43 @@ function intKharos(inpVal) {
     }
     
     else if (kharos == ''){
+        cores(1);
+        res.style.visibility = "hidden";
+    }
+}
+
+function intEgypt(inpVal) {
+    let egypt = '';
+
+    cores(1);
+
+    if (inpVal > 0 && inpVal <= maxEgypt) {
+        for (let key in egyptValues) {
+            while (inpVal >= egyptValues[key]) {
+                egypt += key;
+                inpVal -= egyptValues[key];
+            }
+            if (egypt != '') egypt += '\n';
+        }
+        res.style.fontSize = 'xx-large';
+        res.style.padding = '0vh 2vw 0vh';
+        res.style.lineHeight = '1';
+        res.style.letterSpacing = '3px';
+        res.style.visibility = "visible";
+        res.innerHTML = '<pre>'+egypt+'</pre>';
+    }
+        
+
+    else if ((inpVal <= 0 || inpVal > maxEgypt) && inpVal !='') {
+        res.style.fontSize = 'x-large';
+        res.style.padding = '2vh 2vw';
+        res.style.lineHeight = 'normal';
+        res.style.letterSpacing = 'normal';
+        res.innerHTML = "INSIRA UM NÚMERO DE 1 A " + maxEgypt ;
+        cores(2);
+    }
+    
+    else if (egypt == ''){
         cores(1);
         res.style.visibility = "hidden";
     }
@@ -338,3 +391,14 @@ const kharosValues = {
     "𐩀": 1
 };
 
+const egyptValues = {
+    [String.fromCodePoint(0x13067)]: 1000000,
+    [String.fromCodePoint(0x13190)]: 100000,
+    [String.fromCodePoint(0x130AD)]: 10000,
+    [String.fromCodePoint(0x131BC)]: 1000,
+    [String.fromCodePoint(0x13362)]: 100,
+    [String.fromCodePoint(0x13386)]: 10,
+    [String.fromCodePoint(0x133E4)]: 1
+}
+
+// 
