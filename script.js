@@ -122,6 +122,9 @@ function convert() {
             if (conversion.includes(key) && oper == 5) conversion += '\n';
         }
         switch (oper) {
+            case 1:
+                res.innerHTML = reverseString(conversion);
+                break;
             case 5:
                 displayType(1);
                 res.innerHTML = '<pre>'+conversion+'</pre>';
@@ -165,35 +168,6 @@ function displayType(i) {
             break;
         default:
             break;
-    }
-}
-
-function intEgypt(inpVal) {
-    let egypt = '';
-
-    cores(1);
-
-    if (inpVal > 0 && inpVal <= maxEgypt) {
-        for (let key in egyptValues) {
-            while (inpVal >= egyptValues[key]) {
-                egypt += key;
-                inpVal -= egyptValues[key];
-            }
-            if (egypt.includes(key)) egypt += '\n';
-        }
-        
-    }
-        
-
-    else if ((inpVal <= 0 || inpVal > maxEgypt) && inpVal !='') {
-        
-        res.innerHTML = "INSIRA UM NÚMERO DE 1 A " + maxEgypt ;
-        cores(2);
-    }
-    
-    else if (egypt == ''){
-        cores(1);
-        res.style.visibility = "hidden";
     }
 }
 
