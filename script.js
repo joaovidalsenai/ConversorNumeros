@@ -14,8 +14,6 @@ const ajudas = [
     "https://en.wikipedia.org/wiki/Egyptian_numerals#Digits_and_numbers"
 ]
 
-let oper = 0;
-
 let currentValues = {};
 
 htmlTag.style.backgroundImage = 'url("https://www.dailyartmagazine.com/wp-content/uploads/2022/01/Cole_Thomas_The_Course_of_Empire_Destruction_1836-scaled.jpeg")';
@@ -25,8 +23,10 @@ function cores(i) {
     switch (i) {
         case 1:
             res.style.boxShadow = 'none';
-            input.style.boxShadow = 'none';
             res.style.borderColor = 'ivory';
+            ajuda.style.boxShadow = 'none';
+            ajuda.style.borderColor = 'ivory';
+            input.style.boxShadow = 'none';
             input.style.borderColor = 'ivory';
             break;
         case 2:
@@ -36,6 +36,8 @@ function cores(i) {
             input.style.borderColor = 'red';
             res.style.visibility = "visible";
             res.style.fontFamily = '"Quivira", sans-serif';
+            ajuda.style.boxShadow = '0px 0px 5px red';
+            ajuda.style.borderColor = 'red';
             break;
         default:
             break;
