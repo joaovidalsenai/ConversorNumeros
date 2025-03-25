@@ -3,9 +3,20 @@ const res = document.querySelector("#resultado");
 const input = document.querySelector("#input");
 const ajuda = document.getElementById("ajuda");
 
-const maxRoman = 3999999, maxEtrus = 499, maxAttic = 99999, maxPsalt = 499, maxKharos = 19999, maxEgypt = 9999999;
+const maxValues = [3999999, 499, 99999, 499, 19999, 9999999]
+const buttonIDs = ["roman", "etrus", "attic", "psalt", "kharos", "egypt"]
+const ajudas = [
+    "https://en.wikipedia.org/wiki/Roman_numerals",
+    "https://en.wikipedia.org/wiki/Etruscan_numerals",
+    "https://en.wikipedia.org/wiki/Attic_numerals#The_system",
+    "https://en.wikipedia.org/wiki/Psalter_Pahlavi#Numbers",
+    "https://en.wikipedia.org/wiki/Kharosthi#Numerals",
+    "https://en.wikipedia.org/wiki/Egyptian_numerals#Digits_and_numbers"
+]
 
 let oper = 0;
+
+let currentValues = {};
 
 htmlTag.style.backgroundImage = 'url("https://www.dailyartmagazine.com/wp-content/uploads/2022/01/Cole_Thomas_The_Course_of_Empire_Destruction_1836-scaled.jpeg")';
 
@@ -32,79 +43,63 @@ function cores(i) {
 }
 
 function changeNav() {
-    let currentElement;
+    let currentButton;
     const navButtons = document.getElementsByClassName("nav-btn");
     for (let i = 0; i < navButtons.length; i++) {
         navButtons[i].style.backgroundColor = 'transparent';
         navButtons[i].style.color = 'ivory';
     }
+
+    
+    res.style.fontFamily = '"Quivira", sans-serif';
     res.style.fontSize = 'x-large';
     res.style.padding = '2vh 2vw';
     res.style.lineHeight = 'normal';
     res.style.letterSpacing = 'normal';
+    input.placeholder = 'Insira um número de 1 a '+ maxValues[oper];
+    
+    ajuda.href = ajudas[oper]
 
     switch (oper) {
         
-        // <a href="">ALGARISMOS ÁTICOS</a>
-        // <a href="">ALGARISMOS CAROSTE</a>
-        // <a href="">ALGARISMOS EGÍPCIOS</a>
-        // <a href="">ALGARISMOS ETRUSCOS</a>
-        // <a href="">ALGARISMOS PERSAS</a>
-        // <a href="">ALGARISMOS ROMANOS</a>
         case 0:
-            res.style.fontFamily = '"Quivira", sans-serif';
-            currentElement = document.getElementById("roman");
-            input.placeholder = 'Insira um número de 1 a '+ maxRoman;
-            ajuda.href = "https://en.wikipedia.org/wiki/Roman_numerals";
+            currentValues = romanValues;
             htmlTag.style.backgroundImage = 'url("https://www.dailyartmagazine.com/wp-content/uploads/2022/01/Cole_Thomas_The_Course_of_Empire_Destruction_1836-scaled.jpeg")';
             break;
 
         case 1:
-            res.style.fontFamily = '"Quivira", sans-serif';
-            currentElement = document.getElementById("etrus");
-            input.placeholder = 'Insira um número de 1 a '+ maxEtrus;
-            ajuda.href = "https://en.wikipedia.org/wiki/Etruscan_numerals";
+            currentValues = etrusValues;
             htmlTag.style.backgroundImage = 'url("https://blogs.unimelb.edu.au/shaps-research/files/2024/03/Hubert-Robert-Ancient-ruins-as-baths-1798-1466a6123e0eab63-1050x591.png")';
             break;
 
         case 2:
-            res.style.fontFamily = '"Quivira", sans-serif';
-            currentElement = document.getElementById("attic");
-            input.placeholder = 'Insira um número de 1 a '+ maxAttic;
-            ajuda.href = "https://en.wikipedia.org/wiki/Attic_numerals#The_system";
+            currentValues = atticValues;
             htmlTag.style.backgroundImage = 'url("https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/A_City_of_Ancient_Greece_by_William_Linton.jpg/960px-A_City_of_Ancient_Greece_by_William_Linton.jpg?20230606183934")'
             break;
 
         case 3:
             res.style.fontFamily = '"Noto Sans Psalter Pahlavi", sans-serif';
-            currentElement = document.getElementById("psalt");
-            input.placeholder = 'Insira um número de 1 a '+ maxPsalt;
-            ajuda.href = "https://en.wikipedia.org/wiki/Psalter_Pahlavi#Numbers";
+            currentValues = psaltValues;
             htmlTag.style.backgroundImage = 'url("https://idsb.tmgrup.com.tr/ly/uploads/images/2023/09/26/thumbs/800x531/293777.jpg")';
             break;
 
         case 4:
-            res.style.fontFamily = '"Quivira", sans-serif';
-            currentElement = document.getElementById("kharos");
-            input.placeholder = 'Insira um número de 1 a '+ maxKharos;
-            ajuda.href = "https://en.wikipedia.org/wiki/Kharosthi#Numerals";
+            currentValues = kharosValues;
             htmlTag.style.backgroundImage = 'url("https://upload.wikimedia.org/wikipedia/commons/e/e2/Across_the_Pool_to_the_Golden_Temple_of_Amritsar_by_Edwin_Lord_Weeks.jpg")'
             break;
 
         case 5:
-            res.style.fontFamily = '"Quivira", sans-serif';
-            currentElement = document.getElementById("egypt");
-            input.placeholder = 'Insira um número de 1 a '+ maxEgypt;
-            ajuda.href = "https://en.wikipedia.org/wiki/Egyptian_numerals#Digits_and_numbers";
+            currentValues = egyptValues;
             htmlTag.style.backgroundImage = 'url("https://cdn2.oceansbridge.com/2018/06/22173929/Egyptian-Landscape-with-the-Pyramids-Georg-Macco-Oil-Painting.jpg")'
             break;
 
         default:
             break;
     }
-
-    currentElement.style.backgroundColor = 'ivory';
-    currentElement.style.color = 'black';
+    
+    currentButton = document.getElementById(buttonIDs[oper]);
+    currentButton.style.backgroundColor = 'ivory';
+    currentButton.style.color = 'black';
     convert();
 }
 
@@ -114,204 +109,65 @@ function reverseString(txt) {
 
 function convert() {
     let inpVal = input.value;
-    switch (oper) {
+    let conversion = '';
+
+    cores(1);
+
+    if (inpVal > 0 && inpVal <= maxValues[oper]) {
+        for (let key in currentValues) {
+            while (inpVal >= currentValues[key]) {
+                conversion += key;
+                inpVal -= currentValues[key];
+            }
+            if (conversion.includes(key) && oper == 5) conversion += '\n';
+        }
+        switch (oper) {
+            case 1:
+                res.innerHTML = reverseString(conversion);
+                break;
+            case 5:
+                displayType(1);
+                res.innerHTML = '<pre>'+conversion+'</pre>';
+                break;
+        
+            default:
+                displayType(0)
+                res.innerHTML = conversion;
+                break;
+        }
+        res.style.visibility = "visible";
+    }
+    
+    else if ((inpVal <= 0 || inpVal > maxValues[oper]) && inpVal !='') {
+        displayType(0)
+        cores(2);
+        res.innerHTML = "INSIRA UM NÚMERO DE 1 " + maxValues[oper];
+    }
+    
+    else if (conversion == ''){
+        cores(1);
+        res.style.visibility = "hidden";
+    }   
+}
+
+function displayType(i) {
+    switch (i) {
         case 0:
-            intRoman(inpVal);
+            res.style.fontSize = 'x-large';
+            res.style.padding = '2vh 2vw';
+            res.style.lineHeight = 'normal';
+            res.style.letterSpacing = 'normal';
             break;
+        
         case 1:
-            intEtrus(inpVal);
-            break;
-        case 2:
-            intAttic(inpVal);
-            break;
-        case 3:
-            intPsalt(inpVal);
-            break;
-        case 4:
-            intKharos(inpVal);
-            break;
-        case 5:
-            intEgypt(inpVal);
+            res.style.fontSize = 'x-large';
+            res.style.padding = '0vh 2vw 0vh';
+            res.style.lineHeight = '1';
+            res.style.letterSpacing = '10px';
+            res.style.visibility = "visible";
             break;
         default:
             break;
-    }
-}
-
-function intRoman(inpVal) {
-    let roman = '';
-
-    cores(1);
-
-    if (inpVal > 0 && inpVal <= maxRoman) {
-        for (let key in romanValues) {
-            while (inpVal >= romanValues[key]) {
-                roman += key;
-                inpVal -= romanValues[key];
-            }
-        }
-        res.style.visibility = "visible";
-        res.innerHTML = roman;
-    }
-    
-    else if ((inpVal <= 0 || inpVal > maxRoman) && inpVal !='') {
-        res.innerHTML = "INSIRA UM NÚMERO DE 1 " + maxRoman;
-        cores(2);
-    }
-    
-    else if (roman == ''){
-        cores(1);
-        res.style.visibility = "hidden";
-    }
-}
-
-function intEtrus(inpVal) {
-    let etrus = '';
-
-    cores(1);
-
-    if (inpVal > 0 && inpVal <= maxEtrus) {
-        for (let key in etrusValues) {
-            while (inpVal >= etrusValues[key]) {
-                etrus += key;
-                inpVal -= etrusValues[key];
-            }
-        }
-        res.style.visibility = "visible";
-        res.innerHTML = reverseString(etrus);
-    }
-        
-
-    else if ((inpVal <= 0 || inpVal > maxEtrus) && inpVal !='') {
-        res.innerHTML = "INSIRA UM NÚMERO DE 1 A " + maxEtrus ;
-        cores(2);
-    }
-    
-    else if (etrus == ''){
-        cores(1);
-        res.style.visibility = "hidden";
-    }
-}
-
-function intAttic(inpVal) {
-    let attic = '';
-
-    cores(1);
-
-    if (inpVal > 0 && inpVal <= maxAttic) {
-        for (let key in atticValues) {
-            while (inpVal >= atticValues[key]) {
-                attic += key;
-                inpVal -= atticValues[key];
-            }
-        }
-        res.style.visibility = "visible";
-        res.innerHTML = attic;
-    }
-        
-
-    else if ((inpVal <= 0 || inpVal > maxAttic) && inpVal !='') {
-        res.innerHTML = "INSIRA UM NÚMERO DE 1 A " + maxAttic;
-        cores(2);
-    }
-    
-    else if (attic == ''){
-        cores(1);
-        res.style.visibility = "hidden";
-    }
-}
-
-function intPsalt(inpVal) {
-    let psalt = '';
-
-    cores(1);
-
-    if (inpVal > 0 && inpVal <= maxPsalt) {
-        for (let key in psaltValues) {
-            while (inpVal >= psaltValues[key]) {
-                psalt += key;
-                inpVal -= psaltValues[key];
-            }
-        }
-        res.style.visibility = "visible";
-        res.innerHTML = psalt;
-        res.style.fontFamily = '"Noto Sans Psalter Pahlavi", sans-serif';
-    }
-        
-
-    else if ((inpVal <= 0 || inpVal > maxPsalt) && inpVal !='') {
-        res.innerHTML = "INSIRA UM NÚMERO DE 1 A " + maxPsalt ;
-        cores(2);
-    }
-    
-    else if (psalt == ''){
-        cores(1);
-        res.style.visibility = "hidden";
-    }
-}
-
-function intKharos(inpVal) {
-    let kharos = '';
-
-    cores(1);
-
-    if (inpVal > 0 && inpVal <= maxKharos) {
-        for (let key in kharosValues) {
-            while (inpVal >= kharosValues[key]) {
-                kharos += key;
-                inpVal -= kharosValues[key];
-            }
-        }
-        res.style.visibility = "visible";
-        res.innerHTML = kharos;
-    }
-        
-
-    else if ((inpVal <= 0 || inpVal > maxKharos) && inpVal !='') {
-        res.innerHTML = "INSIRA UM NÚMERO DE 1 A " + maxKharos ;
-        cores(2);
-    }
-    
-    else if (kharos == ''){
-        cores(1);
-        res.style.visibility = "hidden";
-    }
-}
-
-function intEgypt(inpVal) {
-    let egypt = '';
-
-    cores(1);
-
-    if (inpVal > 0 && inpVal <= maxEgypt) {
-        for (let key in egyptValues) {
-            while (inpVal >= egyptValues[key]) {
-                egypt += key;
-                inpVal -= egyptValues[key];
-            }
-            if (egypt.includes(key)) egypt += '\n';
-        }
-        res.style.fontSize = 'x-large';
-        res.style.padding = '0vh 2vw 0vh';
-        res.style.lineHeight = '1';
-        res.style.letterSpacing = '10px';
-        res.style.visibility = "visible";
-        res.innerHTML = '<pre>'+egypt+'</pre>';
-    }
-        
-
-    else if ((inpVal <= 0 || inpVal > maxEgypt) && inpVal !='') {
-        res.style.fontSize = 'x-large';
-        res.style.padding = '2vh 2vw';
-        res.style.lineHeight = 'normal';
-        res.style.letterSpacing = 'normal';
-        res.innerHTML = "INSIRA UM NÚMERO DE 1 A " + maxEgypt ;
-        cores(2);
-    }
-    
-    else if (egypt == ''){
-        cores(1);
-        res.style.visibility = "hidden";
     }
 }
 
@@ -414,5 +270,3 @@ const egyptValues = {
     [String.fromCodePoint(0x13386)]: 10,
     [String.fromCodePoint(0x133E4)]: 1
 }
-
-// 

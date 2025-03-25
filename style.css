@@ -74,17 +74,21 @@ main {
 }
 
 .main {
-    border-radius: 15px;
+    border-radius: 25px;
     border: 1px solid ivory;
     background-color: rgba(0, 0, 0, 0.7);
     padding: 2vh 2vw;
 }
 
+#inputDiv {
+    display: flex;
+}
+
 #input {
-    width: 329px;
-    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 25px 0px 0px 25px;
+    border-right: none;
+    width: 250px;
     font-size: large;
-    margin-bottom: 1vh;
 }
 
 #input:hover {
@@ -94,6 +98,16 @@ main {
 #input:focus {
     outline: none;
     background-color: rgba(0, 0, 0, 0.8);
+}
+
+#ajuda{
+    text-decoration: none;
+    border-radius: 0px 25px 25px 0px;
+    border-left: none;
+}
+
+#ajuda:hover{
+    box-shadow: 0px 0px 5px ivory;
 }
 
 #resultado {
@@ -106,15 +120,6 @@ main {
     height: fit-content;
 }
 
-#ajuda{
-    text-decoration: none;
-    position: absolute;
-    margin: 18px 0px 0px -80px;
-}
-
-#ajuda:hover{
-    text-shadow: 0px 0px 3px ivory;
-}
 
 footer {
     margin-top: auto;
