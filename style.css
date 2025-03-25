@@ -74,7 +74,7 @@ main {
 }
 
 .main {
-    border-radius: 25px;
+    border-radius: 20px;
     border: 1px solid ivory;
     background-color: rgba(0, 0, 0, 0.7);
     padding: 2vh 2vw;
@@ -85,7 +85,7 @@ main {
 }
 
 #input {
-    border-radius: 25px 0px 0px 25px;
+    border-radius: 20px 0px 0px 20px;
     border-right: none;
     width: 250px;
     font-size: large;
@@ -102,7 +102,7 @@ main {
 
 #ajuda{
     text-decoration: none;
-    border-radius: 0px 25px 25px 0px;
+    border-radius: 0px 20px 20px 0px;
     border-left: none;
 }
 
