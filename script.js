@@ -3,7 +3,7 @@ const res = document.querySelector("#resultado");
 const input = document.querySelector("#input");
 const ajuda = document.getElementById("ajuda");
 
-const maxValues = [999999, 19999, 9999999, 499, 499, 3999999];
+const maxValues = [99999, 19999, 9999999, 499, 499, 3999999];
 const buttonIDs = ["attic", "caros", "egypt", "etrus", "psalt","roman"]
 const ajudas = [
     "https://en.wikipedia.org/wiki/Attic_numerals#The_system",
@@ -72,7 +72,7 @@ function changeNav() {
     ajuda.href = ajudas[oper]
 
     switch (oper) {
-        case 2:
+        case 4:
             res.style.fontFamily = '"Noto Sans Psalter Pahlavi", sans-serif';
             break;
         default:
